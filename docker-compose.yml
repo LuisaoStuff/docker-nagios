@@ -1,0 +1,19 @@
+version: "3.0"
+
+services:
+  nagios4:
+    image: manios/nagios:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./etc/:/opt/nagios/etc/
+      - ./var:/opt/nagios/var/
+      - ./ssmtp.conf:/etc/ssmtp/ssmtp.conf
+      - ./plugins:/opt/Custom-Nagios-Plugins
+    environment:
+      TZ: "Europe/Madrid"
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "9025:8025"
